@@ -1,0 +1,17 @@
+protocol = "scpi-sensor"
+doc = ""
+traits = ["is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-scpi"
+bugtracker = "https://gitlab.com/yaq/yaqd-scpi/-/issues"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-scpi"
+
+[config]
+
+[state]
+
+[messages]
+
