@@ -5,6 +5,7 @@ repos:
     -   id: trailing-whitespace
     -   id: no-commit-to-branch
         args: [-b, master]
+    -   id: check-toml
 
   - repo: https://github.com/psf/black
     rev: 20.8b1
@@ -26,4 +27,3 @@ repos:
     hooks:
       - id: yaq-traits-check
       - id: yaq-traits-compose
-
