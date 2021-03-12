@@ -1,6 +1,7 @@
 protocol = "scpi-sensor"
 doc = "Daemon mapping generic SCPI queries onto yaq channels as defined by config."
 traits = ["is-sensor", "has-measure-trigger", "is-daemon"]
+hardware = ["rigol:mso1104"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-scpi"

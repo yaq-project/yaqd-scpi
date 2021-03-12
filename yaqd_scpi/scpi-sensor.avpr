@@ -78,6 +78,9 @@
         }
     },
     "doc": "Daemon mapping generic SCPI queries onto yaq channels as defined by config.",
+    "hardware": [
+        "rigol:mso1104"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-scpi",
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-scpi"

@@ -1,6 +1,7 @@
 protocol = "scpi-set-discrete"
 doc = "Daemon mapping generic SCPI commands onto yaq discretely-settable positions as defined by config."
 traits = ["is-discrete", "has-position", "is-daemon"]
+hardware = ["rigol:mso1104"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-scpi"
