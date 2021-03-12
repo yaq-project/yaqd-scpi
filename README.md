@@ -12,3 +12,4 @@ yaq daemons for SCPI hardware
 This package contains the following daemon(s):
 
 - https://yaq.fyi/daemons/scpi-sensor
+- https://yaq.fyi/daemons/scpi-set-continuous
