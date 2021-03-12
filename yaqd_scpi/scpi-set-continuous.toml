@@ -1,0 +1,26 @@
+protocol = "scpi-set-continuous"
+doc = "Daemon mapping generic SCPI commands onto yaq settable positions as defined by config."
+traits = ["has-limits", "has-position", "is-daemon"]
+
+[links]
+source = "https://gitlab.com/yaq/yaqd-scpi"
+bugtracker = "https://gitlab.com/yaq/yaqd-scpi/-/issues"
+
+[installation]
+PyPI = "https://pypi.org/project/yaqd-scpi"
+conda-forge = "https://anaconda.org/conda-forge/yaqd-scpi"
+
+[config]
+
+[config.scpi_command]
+type = "string"
+doc = "SCPI command, e.g. :SOUR1:FREQ"
+
+[config.units]
+type = ["string", "null"]
+default = "__null__"
+doc = "Units of position / destination."
+
+[config.visa_address]
+type = "string"
+doc = "VISA resource name."
