@@ -31,7 +31,11 @@ entry:
   stage: test
   script:
     - yaqd-scpi-sensor --version
-    - yaqd-scpi-sensor -h
+    - yaqd-scpi-sensor --help
+    - yaqd-scpi-set-continuous --version
+    - yaqd-scpi-set-continuous --help
+    - yaqd-scpi-set-discrete --version
+    - yaqd-scpi-set-discrete --help
 traits:
   stage: test
   script:
