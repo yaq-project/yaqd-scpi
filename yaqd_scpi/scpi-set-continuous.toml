@@ -1,6 +1,7 @@
 protocol = "scpi-set-continuous"
 doc = "Daemon mapping generic SCPI commands onto yaq settable positions as defined by config."
 traits = ["has-limits", "has-position", "is-daemon"]
+hardware = ["rigol:mso1104"]
 
 [links]
 source = "https://gitlab.com/yaq/yaqd-scpi"

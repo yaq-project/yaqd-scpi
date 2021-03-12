@@ -138,6 +138,9 @@
             "type": "record"
         }
     },
+    "hardware": [
+        "rigol:mso1104"
+    ],
     "installation": {
         "PyPI": "https://pypi.org/project/yaqd-scpi",
         "conda-forge": "https://anaconda.org/conda-forge/yaqd-scpi"
