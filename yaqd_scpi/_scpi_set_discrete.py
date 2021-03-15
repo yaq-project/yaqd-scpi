@@ -1,6 +1,7 @@
 __all__ = ["SCPISetDiscrete"]
 
 import asyncio
+import sys
 from typing import Dict, Any, List
 
 import pyvisa
@@ -15,7 +16,10 @@ class SCPISetDiscrete(IsDiscrete, HasPosition, IsDaemon):
         super().__init__(name, config, config_filepath)
         self._scpi_command = self._config["scpi_command"]
         self._identifiers_by_position = {k: v for v, k in self._config["identifiers"].items()}
-        rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
+        if sys.platform.startswith("win32"):
+            rm = pyvisa.ResourceManager() # use ni-visa backend
+        else:
+            rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
         self._instrument = rm.open_resource(config["visa_address"])
 
     def _set_position(self, position):
