@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
-##[2021.10.0]
+## [2021.10.0]
 
 ### Changed
 - rerender avpr based on recent traits change
