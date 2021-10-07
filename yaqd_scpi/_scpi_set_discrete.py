@@ -17,7 +17,7 @@ class SCPISetDiscrete(IsDiscrete, HasPosition, IsDaemon):
         self._scpi_command = self._config["scpi_command"]
         self._identifiers_by_position = {k: v for v, k in self._config["identifiers"].items()}
         if sys.platform.startswith("win32"):
-            rm = pyvisa.ResourceManager() # use ni-visa backend
+            rm = pyvisa.ResourceManager()  # use ni-visa backend
         else:
             rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
         self._instrument = rm.open_resource(config["visa_address"])
