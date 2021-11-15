@@ -30,7 +30,7 @@ class SCPISetDiscrete(IsDiscrete, HasPosition, IsDaemon):
     async def update_state(self):
         while True:
             response = self._instrument.query(f"{self._scpi_command}?").strip()
-            self._state["identifier"] = response
+            self._state["position_identifier"] = response
             position = self._config["identifiers"][response]
             self._state["position"] = position
             if self._state["position"] == self._state["destination"]:

@@ -5,12 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- bad imports in sensor daemon
+- discrete daemon bug where get_identifier was broken
+
 ## [2021.10.0]
 
 ### Changed
 - rerender avpr based on recent traits change
 
 ## [2021.3.0]
+
 ### Added
 - initial release
 
