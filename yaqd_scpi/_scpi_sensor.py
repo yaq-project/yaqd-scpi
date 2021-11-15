@@ -1,5 +1,6 @@
 __all__ = ["SCPISensor"]
 
+import sys
 import asyncio
 from typing import Dict, Any, List
 
@@ -21,7 +22,7 @@ class SCPISensor(HasMeasureTrigger, IsSensor, IsDaemon):
             rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
         self._instrument = rm.open_resource(config["visa_address"])
 
-    async def measure(self):
+    async def _measure(self):
         out = {}
         for k in self._channel_names:
             query = self._config["channels"][k]["query"]
