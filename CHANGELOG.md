@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Changed
+- rerendered avpr corresponding to yaq-traits 2022.5.0
+
 ## [2021.11.0]
 
 ### Fixed
