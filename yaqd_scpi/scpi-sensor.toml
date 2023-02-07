@@ -15,7 +15,7 @@ conda-forge = "https://anaconda.org/conda-forge/yaqd-scpi"
 type = "record"
 name = "channel"
 fields = [{"name"="query", "type"="string", "doc"="SCPI query, e.g. MEAS:VOLT:DC?"},
-	  {"name"="units", "type"=["string", "null"], "default"="__null__"}]
+	  {"name"="units", "type"=["null", "string"], "default"="__null__"}]
 
 [config]
 

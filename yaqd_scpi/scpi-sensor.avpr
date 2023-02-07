@@ -96,6 +96,16 @@
             "request": [],
             "response": "boolean"
         },
+        "direct_scpi_write": {
+            "doc": "write a SCPI command",
+            "request": [
+                {
+                    "name": "command",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
         "get_channel_names": {
             "doc": "Get current channel names.",
             "origin": "is-sensor",
@@ -230,8 +240,8 @@
                     "default": null,
                     "name": "units",
                     "type": [
-                        "string",
-                        "null"
+                        "null",
+                        "string"
                     ]
                 }
             ],
