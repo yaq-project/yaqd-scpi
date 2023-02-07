@@ -25,3 +25,7 @@ doc = "Units of position / destination."
 [config.visa_address]
 type = "string"
 doc = "VISA resource name."
+
+[messages.direct_scpi_write]
+doc = "write a SCPI command"
+request = [{"name"="command", "type"="string"}]

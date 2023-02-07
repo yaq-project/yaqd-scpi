@@ -6,20 +6,16 @@ from typing import Dict, Any, List
 
 import pyvisa
 
-from yaqd_core import HasLimits, HasPosition, IsDaemon
+from yaqd_core import HasLimits, HasPosition
+from .scpi_base import SCPIBase
 
 
-class SCPISetContinuous(HasLimits, HasPosition, IsDaemon):
+class SCPISetContinuous(HasLimits, HasPosition, SCPIBase):
     _kind = "scpi-set-continuous"
 
     def __init__(self, name, config, config_filepath):
         super().__init__(name, config, config_filepath)
         self._scpi_command = self._config["scpi_command"]
-        if sys.platform.startswith("win32"):
-            rm = pyvisa.ResourceManager()  # use ni-visa backend
-        else:
-            rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
-        self._instrument = rm.open_resource(config["visa_address"])
 
     def _set_position(self, position):
         self._busy = True

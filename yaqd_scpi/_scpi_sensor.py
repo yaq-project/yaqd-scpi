@@ -6,10 +6,11 @@ from typing import Dict, Any, List
 
 import pyvisa
 
-from yaqd_core import HasMeasureTrigger, IsSensor, IsDaemon
+from yaqd_core import HasMeasureTrigger, IsSensor
+from .scpi_base import SCPIBase
 
 
-class SCPISensor(HasMeasureTrigger, IsSensor, IsDaemon):
+class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
     _kind = "scpi-sensor"
 
     def __init__(self, name, config, config_filepath):
