@@ -17,11 +17,6 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
         super().__init__(name, config, config_filepath)
         self._channel_names = list(config["channels"].keys())
         self._channel_units = {k: config["channels"][k]["units"] for k in self._channel_names}
-        if sys.platform.startswith("win32"):
-            rm = pyvisa.ResourceManager()  # use ni-visa backend
-        else:
-            rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
-        self._instrument = rm.open_resource(config["visa_address"])
 
     async def _measure(self):
         out = {}
