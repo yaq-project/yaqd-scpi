@@ -7,7 +7,7 @@ from typing import Dict, Any, List
 import pyvisa
 
 from yaqd_core import IsDiscrete, HasPosition
-from .scpi_base import SCPIBase
+from ._scpi_base import SCPIBase
 
 
 class SCPISetDiscrete(IsDiscrete, HasPosition, SCPIBase):

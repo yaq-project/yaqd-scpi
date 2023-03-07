@@ -1,6 +1,7 @@
 __all__ = ["SCPIBase"]
 
 import pyvisa
+import sys
 
 from yaqd_core import IsDaemon
 
