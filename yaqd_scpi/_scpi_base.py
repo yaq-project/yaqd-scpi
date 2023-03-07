@@ -19,7 +19,7 @@ class SCPIBase(IsDaemon):
 
     async def connect_instrument(self, *args):
         with rm.open_resource(*args) as instr:
-            self._instrument:pyvisa.Resource = instr
+            self._instrument: pyvisa.Resource = instr
             await asyncio.sleep(1)
 
     def direct_scpi_write(self, command: str):
