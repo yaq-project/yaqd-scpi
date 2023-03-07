@@ -20,8 +20,13 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
 
     async def _measure(self):
         out = {}
-        for k in self._channel_names:
-            query = self._config["channels"][k]["query"]
-            self._instrument.write(query)
-            out[k] = float(self._instrument.read())
+        try:
+            for k in self._channel_names:
+                query = self._config["channels"][k]["query"]
+                self._instrument.write(query)
+                out[k] = float(self._instrument.read())
+        except Exception as e:
+            self.logger.info("error in _measure:")
+            self.logger.error(e)
+            self.logger.info(out.keys())
         return out

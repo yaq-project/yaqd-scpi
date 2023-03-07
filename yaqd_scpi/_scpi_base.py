@@ -14,7 +14,7 @@ class SCPIBase(IsDaemon):
             rm = pyvisa.ResourceManager()  # use ni-visa backend
         else:
             rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
-        self._instrument = rm.open_resource(config["visa_address"])
+        self._instrument = rm.open_resource(config["visa_address"], timeout=1000)
 
     def direct_scpi_write(self, command: str):
         self._instrument.write(command)
