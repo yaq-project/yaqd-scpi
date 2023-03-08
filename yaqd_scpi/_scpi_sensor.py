@@ -22,12 +22,18 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
     async def _measure(self):
         out = {}
         for k in self._channel_names:
-            query = self._config["channels"][k]["query"]
-            self._instrument.write(query)
-            try:
-                out[k] = float(self._instrument.read())
-            except Exception as e:
-                self.logger.info(f"error in _measure with key {k}")
-                self.logger.error(e)
-                out[k] = np.nan
+            handling_error = False
+            while True:
+                query = self._config["channels"][k]["query"]
+                try:
+                    out[k] = float(self._instrument.query(query))
+                    if handling_error:
+                        self.logger.info(f"new value {k} = {out[k]}")
+                except Exception as e:
+                    self.logger.info(f"error in _measure with key {k}")
+                    self.logger.error(e)
+                    handling_error = True
+                    await asyncio.sleep(0.01)
+                    continue
+                break
         return out
