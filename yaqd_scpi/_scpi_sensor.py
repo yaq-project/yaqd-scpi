@@ -24,7 +24,7 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
             while True:
                 query = self._config["channels"][k]["query"]
                 self._instrument.write(query)
-                try: 
+                try:
                     out[k] = float(self._instrument.read())
                 except Exception as e:
                     self._instrument.clear()
