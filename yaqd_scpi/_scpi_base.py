@@ -2,6 +2,7 @@ __all__ = ["SCPIBase"]
 
 import pyvisa
 import sys
+import asyncio
 
 from yaqd_core import IsDaemon
 
