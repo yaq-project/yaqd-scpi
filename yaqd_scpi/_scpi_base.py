@@ -24,8 +24,3 @@ class SCPIBase(IsDaemon):
 
     def direct_scpi_write(self, command: str):
         self._instrument.write(command)
-
-    def close(self):
-        if self._instrument is None:
-            return
-        self.instrument.close()
