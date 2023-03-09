@@ -23,13 +23,13 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
         query_error = False
         while True:
             try:
-                query = ";".join([self._config["channels"][k]["query"] for k in self._channel_names])
+                query = ";".join(
+                    [self._config["channels"][k]["query"] for k in self._channel_names]
+                )
                 if query_error:
                     self.logger.info(str(out))
                 response = self._instrument.query(query)
-                out = {
-                    k: float(s) for k, s in zip(self._channel_names, response.split(";"))
-                }
+                out = {k: float(s) for k, s in zip(self._channel_names, response.split(";"))}
             except Exception as e:
                 self.logger.error(e)
                 query_error = True
