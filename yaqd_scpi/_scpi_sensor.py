@@ -35,5 +35,5 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
                 out[k] = float(response)
                 if query_error:
                     self.logger.info(f"afer error, {k} = {str(out)}")
-            break
+                break
         return out
