@@ -21,19 +21,19 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
 
     async def _measure(self):
         query_error = False
-        while True:
-            try:
-                query = ";".join(
-                    [self._config["channels"][k]["query"] for k in self._channel_names]
-                )
+        out = {}
+        for k in self._channel_names:
+            while True:
+                try:
+                    response = self._instrument.query(self._config["channels"][k]["query"])
+                except Exception as e:
+                    self.logger.error(f"error in _measure with key {k}")
+                    self.logger.error(e)
+                    query_error = True
+                    await asyncio.sleep(0.1)
+                    continue
+                out[k] = float(response)
                 if query_error:
-                    self.logger.info(str(out))
-                response = self._instrument.query(query)
-                out = {k: float(s) for k, s in zip(self._channel_names, response.split(";"))}
-            except Exception as e:
-                self.logger.error(e)
-                query_error = True
-                await asyncio.sleep(0.1)
-                continue
+                    self.logger.info(f"afer error, {k} = {str(out)}")
             break
         return out
