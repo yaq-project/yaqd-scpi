@@ -33,7 +33,7 @@ class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
                     await asyncio.sleep(0.1)
                     continue
                 out[k] = float(response)
-                if query_error:
-                    self.logger.info(f"afer error, {k} = {str(out)}")
                 break
+        if query_error:
+            self.logger.info(f"afer error, {k} = {str(out)}")
         return out
