@@ -21,5 +21,14 @@ class SCPIBase(IsDaemon):
     def direct_scpi_write(self, command: str):
         self._instrument.write(command)
 
+    def direct_scpi_query(self, command: str) -> str:
+        return str(self._instrument.query(command))
+    
+    def extra_scpi_read(self):
+        """
+        purely for debugging
+        """
+        self._instrument.read()
+
     def close(self):
         self._instrument.close()

@@ -96,6 +96,16 @@
             "request": [],
             "response": "boolean"
         },
+        "direct_scpi_query": {
+            "doc": "",
+            "request": [
+                {
+                    "name": "command",
+                    "type": "string"
+                }
+            ],
+            "response": "string"
+        },
         "direct_scpi_write": {
             "doc": "write a SCPI command",
             "request": [
@@ -104,6 +114,11 @@
                     "type": "string"
                 }
             ],
+            "response": "null"
+        },
+        "extra_scpi_read": {
+            "doc": "",
+            "request": [],
             "response": "null"
         },
         "get_channel_names": {
@@ -125,6 +140,15 @@
                     "items": "int",
                     "type": "array"
                 }
+            }
+        },
+        "get_channel_signs": {
+            "doc": "Returns a map of each channel to a boolean.\n    True indicates channel can have both positive and negative signal.\n\tFalse indicates channel values either positive or negative.\n\tUseful as a plotting hint.\n    ",
+            "origin": "is-sensor",
+            "request": [],
+            "response": {
+                "type": "map",
+                "values": "boolean"
             }
         },
         "get_channel_units": {

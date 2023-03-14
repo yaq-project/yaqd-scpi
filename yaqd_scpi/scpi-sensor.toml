@@ -31,3 +31,11 @@ doc = "VISA resource name."
 [messages.direct_scpi_write]
 doc = "write a SCPI command"
 request = [{"name"="command", "type"="string"}]
+
+[messages.direct_scpi_query]
+doc = ""
+request = [{"name"="command", "type"="string"}]
+response = "string"
+
+[messages.extra_scpi_read]
+doc = ""
