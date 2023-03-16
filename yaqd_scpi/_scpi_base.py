@@ -22,13 +22,15 @@ class SCPIBase(IsDaemon):
         self._instrument.write(command)
 
     def direct_scpi_query(self, command: str) -> str:
+        assert "?" in command
         return str(self._instrument.query(command))
 
     def extra_scpi_read(self):
         """
         purely for debugging
         """
-        self._instrument.read()
+        read = self._instrument.read()
+        self.logger.info(f"extra read: {read}")
 
     def close(self):
         self._instrument.close()
