@@ -20,3 +20,7 @@ doc = "SCPI command, e.g. :SOUR1:FREQ"
 [config.visa_address]
 type = "string"
 doc = "VISA resource name."
+
+[messages.direct_scpi_write]
+doc = "write a SCPI command"
+request = [{"name"="command", "type"="string"}]

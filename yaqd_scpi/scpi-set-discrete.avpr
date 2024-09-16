@@ -98,6 +98,16 @@
             "request": [],
             "response": "boolean"
         },
+        "direct_scpi_write": {
+            "doc": "write a SCPI command",
+            "request": [
+                {
+                    "name": "command",
+                    "type": "string"
+                }
+            ],
+            "response": "null"
+        },
         "get_config": {
             "doc": "Full configuration for the individual daemon as defined in the TOML file.\nThis includes defaults and shared settings not directly specified in the daemon-specific TOML table.\n",
             "origin": "is-daemon",

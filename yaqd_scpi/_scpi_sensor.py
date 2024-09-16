@@ -5,27 +5,35 @@ import asyncio
 from typing import Dict, Any, List
 
 import pyvisa
+import numpy as np
 
-from yaqd_core import HasMeasureTrigger, IsSensor, IsDaemon
+from yaqd_core import HasMeasureTrigger, IsSensor
+from ._scpi_base import SCPIBase
 
 
-class SCPISensor(HasMeasureTrigger, IsSensor, IsDaemon):
+class SCPISensor(HasMeasureTrigger, IsSensor, SCPIBase):
     _kind = "scpi-sensor"
 
     def __init__(self, name, config, config_filepath):
         super().__init__(name, config, config_filepath)
         self._channel_names = list(config["channels"].keys())
         self._channel_units = {k: config["channels"][k]["units"] for k in self._channel_names}
-        if sys.platform.startswith("win32"):
-            rm = pyvisa.ResourceManager()  # use ni-visa backend
-        else:
-            rm = pyvisa.ResourceManager("@py")  # use pyvisa-py backend
-        self._instrument = rm.open_resource(config["visa_address"])
 
     async def _measure(self):
+        query_error = False
         out = {}
         for k in self._channel_names:
-            query = self._config["channels"][k]["query"]
-            self._instrument.write(query)
-            out[k] = float(self._instrument.read())
+            while True:
+                try:
+                    response = self._instrument.query(self._config["channels"][k]["query"])
+                except Exception as e:
+                    self.logger.error(f"error in _measure with key {k}")
+                    self.logger.error(e)
+                    query_error = True
+                    await asyncio.sleep(0.1)
+                    continue
+                out[k] = float(response)
+                break
+        if query_error:
+            self.logger.info(f"afer error, {k} = {str(out)}")
         return out
